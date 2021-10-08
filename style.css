@@ -1,14 +1,61 @@
 .Container 
 {
     text-align: center;
+    color:lightgreen;
+    background-color: black;
     font-family: 'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', sans-serif;/*Probably changing it lagter adn add some gaming*/
-    border:5px solid skyblue;
+    border:5px solid green;
     text-shadow: 2px 2px hotpink;
+    letter-spacing:8px;/*adding to make animation more smooth*/
+    animation-name: text;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
+}
+
+.Content
+{
+    border : 2px solid blue;
+    background-color: black;
+    color:white;
+
 }
 #Arena
 {
     height: 800px;
     width:100%;
-    background-color: black;
-    
+    background-image:url("./image/Road_bg.png") ;
+    background-size: cover;
+    position: relative;
+    box-sizing: border-box;
+    background-position: center center;
 }
+ .character
+ {
+     height: 50px;
+     width: 50px;
+     position: absolute;
+     top:530px;
+     right: 50%;
+     background-image: url("./image/character.png");
+     background-repeat: no-repeat;
+     background-size: cover;
+     bottom: 0px;
+ }
+
+ @keyframes text {
+     /* 0%
+     {
+        margin-bottom: -40px;
+     } */
+     30%
+     {
+         letter-spacing: 25px;
+         /* margin-bottom: -40px; */
+     }
+     85%
+     {
+         letter-spacing: 8px;
+         /* margin-bottom: -40px; */
+     }
+     
+ }
