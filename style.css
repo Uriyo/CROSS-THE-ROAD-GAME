@@ -1,0 +1,14 @@
+.Container 
+{
+    text-align: center;
+    font-family: 'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', sans-serif;/*Probably changing it lagter adn add some gaming*/
+    border:5px solid skyblue;
+    text-shadow: 2px 2px hotpink;
+}
+#Arena
+{
+    height: 800px;
+    width:100%;
+    background-color: black;
+    
+}
