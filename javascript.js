@@ -6,23 +6,25 @@ var characterPositionup =530;//for up and down
 
 function moveForward()
 {
-    characterPositionup-=20;
-    let timerId =setTimeout(function()
+    if(characterPositionup>20)
     {
-       if(characterPositionup>20)
-       {
+    let timerId =setTimeout(function()
+    {      
+        characterPositionup-=20;
         img.style.top= characterPositionup + "px";
-       }
     },20)
+    }
 }
 function moveDown()
 {
-    characterPositionup+=20;
-    if(characterPositionup<(arena.offsetHeight-40)){
-  let timerId=setTimeout(function()
-  {
-    img.style.top= characterPositionup + "px";
-  },20) 
+    
+    if(characterPositionup<(arena.offsetHeight-40))
+    {
+     let timerId=setTimeout(function()
+        {
+            characterPositionup+=20;
+            img.style.top= characterPositionup + "px";
+        },20) 
     } 
 }
 
@@ -30,10 +32,11 @@ var characterPositionleft = 900; //for left and right
 
 function moveLeft()
 {
-    characterPositionleft-=20;
+    
     if(characterPositionleft>20){
     let timerId=setTimeout(function()
         {
+            characterPositionleft-=20;
             img.style.left= characterPositionleft + "px";
         },20)
     }    
@@ -41,11 +44,13 @@ function moveLeft()
 
 function moveRight()
 {
-    characterPositionleft+=20;
+   
     if(characterPositionleft<(arena.offsetWidth-40))//you have added or subtracted 40 everyawhere as your charcter is going out of your box
     {
+   
     let timerId=setTimeout(function()
     {
+        characterPositionleft+=20;
       img.style.left= characterPositionleft + "px";
     },20)  
     }
