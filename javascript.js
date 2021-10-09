@@ -3,16 +3,16 @@ var arena = document.querySelector("#Arena");
 var img = document.querySelector(".character");
 
 var characterPositionup =530;//for up and down
-
+const charspeed=5;
 function moveForward()
 {
-    if(characterPositionup>20)
+    if(characterPositionup>charspeed)
     {
     let timerId =setTimeout(function()
     {      
-        characterPositionup-=20;
+        characterPositionup-=charspeed;
         img.style.top= characterPositionup + "px";
-    },20)
+    },charspeed)
     }
 }
 function moveDown()
@@ -22,9 +22,9 @@ function moveDown()
     {
      let timerId=setTimeout(function()
         {
-            characterPositionup+=20;
+            characterPositionup+=charspeed;
             img.style.top= characterPositionup + "px";
-        },20) 
+        },charspeed) 
     } 
 }
 
@@ -33,12 +33,12 @@ var characterPositionleft = 900; //for left and right
 function moveLeft()
 {
     
-    if(characterPositionleft>20){
+    if(characterPositionleft>charspeed){
     let timerId=setTimeout(function()
         {
-            characterPositionleft-=20;
+            characterPositionleft-=charspeed;
             img.style.left= characterPositionleft + "px";
-        },20)
+        },charspeed)
     }    
 }
 
@@ -50,9 +50,9 @@ function moveRight()
    
     let timerId=setTimeout(function()
     {
-        characterPositionleft+=20;
+        characterPositionleft+=charspeed;
       img.style.left= characterPositionleft + "px";
-    },20)  
+    },charspeed)  
     }
 }
 
@@ -77,5 +77,5 @@ function moveRight()
         moveRight();
     }
 }
-document.addEventListener('keyup', control);
+document.addEventListener('keydown', control);
 
