@@ -79,32 +79,74 @@ function moveRight()
 }
 document.addEventListener('keydown', control);
 
+
 // CAR MOTION
-function car_move() {
+var vehicle_size = "60px";
+var direction_left = "left";
+var direction_right = "right";
+var speed = 20;
+var level1 = 600;
+var level2 = 500;
+var level3 = 280;
+var level4 = 200;
+// var vehicle = "Car";
+function car_move(direction,speed,level,vehicle) {
     var car = document.createElement("img");
     var road1 = document.querySelector("#road1");
     
-    car.setAttribute("src", "GameAssets/Car.png");
-    car.setAttribute("height", "50x");
-    car.setAttribute("id","car_id");
-    car.style.position = "relative";
-
+    car.setAttribute("src", "GameAssets/"+vehicle+".png");
+    car.setAttribute("height", vehicle_size);
+    car.setAttribute("id","car_id"+direction+level);
+    car.style.position = "absolute";
     road1.appendChild(car);
 
-    var car_obj = document.getElementById("car_id");
+    var car_obj = document.getElementById("car_id"+direction+level);
     var pos = 0 ;
+    // 4 levels
+    car_obj.style.top = level+'px';
     // elem.style.transform = "scale(-1,1)";
-    var status = setInterval(frame,2);
+    var status = setInterval(frame,speed);
+    if (direction=="right")
+    {
+        // to flip the image
+        car_obj.style.transform = "scale(-1,1)";
+        pos = 1920;
+        car_obj.style.left = pos;
+    }
     function frame() {
-        if (pos>1920)
+        if (direction=="left")
         {
-            clearInterval(status);
+            if (pos>1920)
+            {
+                clearInterval(status);
+                car_obj.remove();
+            }
+            else
+            {
+                pos+=3;
+                car_obj.style.left = pos+'px';
+            }
         }
+        // direction is right
         else {
-            pos++;
-            car_obj.style.left = pos+'px';
+            if (pos<-100)
+            {
+                clearInterval(status);
+                car_obj.remove();
+            }
+            else {
+                pos-=3;
+                car_obj.style.left= pos+'px';
+            }
+        
         }
         }
     
 }
-car_move();
+// level 2 and 4 for left
+// level 1 and 3 for right 
+
+car_move(direction_left,speed,level2,"Car");
+car_move(direction_right,speed,level1,"Jeep");
+car_move(direction_left,speed,level4,"SUV");
+car_move(direction_right,speed,level3,"Ambulance");
