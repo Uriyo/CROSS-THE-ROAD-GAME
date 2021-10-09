@@ -1,6 +1,7 @@
 body
 {
     background-color: black;
+    overflow: hidden;
 }
 .Container 
 {
@@ -25,11 +26,19 @@ body
 }
 #Arena
 {
+<<<<<<< HEAD
     height:800px;
     /* width:100%; */
     background-image:url("./GameAssets/Road_bg.png") ;
     background-size: contain;
     position: relative;
+=======
+    height: 800px;
+    width:70%;
+    background-image:url("./image/Road_bg.png") ;
+    background-size: cover;
+    position: absolute;
+>>>>>>> 4d86081657d34ed6803411212f15536e30f41d33
     box-sizing: border-box;
     background-position: center center;
 }
