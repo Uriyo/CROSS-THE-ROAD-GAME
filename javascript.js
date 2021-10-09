@@ -156,22 +156,22 @@ function random_motion() {
     setTimeout( function(){
         // gives values 0 1 2 3 4 5 
         console.log(Math.floor((Math.random()*10)/1.8));
-        car_move(direction_right,speed,level1,vehicle_arr[Math.floor((Math.random()*10)/1.5)]);
+        car_move(direction_right,speed,level1,vehicle_arr[Math.floor((Math.random()*10)/1.8)]);
     }, Math.random()*1000);
 
     // level4
     setTimeout( function(){
-        car_move(direction_left,speed,level4,vehicle_arr[Math.floor((Math.random()*10)/1.5)])
+        car_move(direction_left,speed,level4,vehicle_arr[Math.floor((Math.random()*10)/1.8)])
     },Math.random()*1000);
     
     // level3
     setTimeout( function(){
-        car_move(direction_right,speed,level3,vehicle_arr[Math.floor((Math.random()*10)/1.5)])
+        car_move(direction_right,speed,level3,vehicle_arr[Math.floor((Math.random()*10)/1.8)])
     }, Math.random()*1000);
     
     // level2
     setTimeout(function(){
-        car_move(direction_left,speed,level2,vehicle_arr[Math.floor((Math.random()*10)/1.5)])
+        car_move(direction_left,speed,level2,vehicle_arr[Math.floor((Math.random()*10)/1.8)])
     }, Math.random()*1000)
 }
 setInterval(random_motion,2000);
