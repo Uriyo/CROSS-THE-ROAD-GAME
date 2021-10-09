@@ -93,14 +93,14 @@ var level4 = 200;
 function car_move(direction,speed,level,vehicle) {
     var car = document.createElement("img");
     var road1 = document.querySelector("#road1");
-    
+    var uid = Math.random();
     car.setAttribute("src", "GameAssets/"+vehicle+".png");
     car.setAttribute("height", vehicle_size);
-    car.setAttribute("id","car_id"+direction+level);
+    car.setAttribute("id","car_id"+direction+level+uid);
     car.style.position = "absolute";
     road1.appendChild(car);
 
-    var car_obj = document.getElementById("car_id"+direction+level);
+    var car_obj = document.getElementById("car_id"+direction+level+uid);
     var pos = 0 ;
     // 4 levels
     car_obj.style.top = level+'px';
@@ -145,8 +145,33 @@ function car_move(direction,speed,level,vehicle) {
 }
 // level 2 and 4 for left
 // level 1 and 3 for right 
+var delay = 1000;
+// 6 vehicles
+const vehicle_arr = ["Car","Bus","Truck","Jeep","Ambulance","SUV"];
+// 2 direction array
+const direction_arr = [direction_left,direction_right];
 
-car_move(direction_left,speed,level2,"Car");
-car_move(direction_right,speed,level1,"Jeep");
-car_move(direction_left,speed,level4,"SUV");
-car_move(direction_right,speed,level3,"Ambulance");
+function random_motion() {
+    // level1
+    setTimeout( function(){
+        // gives values 0 1 2 3 4 5 
+        console.log(Math.floor((Math.random()*10)/1.8));
+        car_move(direction_right,speed,level1,vehicle_arr[Math.floor((Math.random()*10)/1.5)]);
+    }, Math.random()*1000);
+
+    // level4
+    setTimeout( function(){
+        car_move(direction_left,speed,level4,vehicle_arr[Math.floor((Math.random()*10)/1.5)])
+    },Math.random()*1000);
+    
+    // level3
+    setTimeout( function(){
+        car_move(direction_right,speed,level3,vehicle_arr[Math.floor((Math.random()*10)/1.5)])
+    }, Math.random()*1000);
+    
+    // level2
+    setTimeout(function(){
+        car_move(direction_left,speed,level2,vehicle_arr[Math.floor((Math.random()*10)/1.5)])
+    }, Math.random()*1000)
+}
+setInterval(random_motion,2000);
