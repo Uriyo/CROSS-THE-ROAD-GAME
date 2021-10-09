@@ -1,6 +1,7 @@
 body
 {
     background-color: black;
+    overflow: hidden;
 }
 .Container 
 {
@@ -29,7 +30,7 @@ body
     width:70%;
     background-image:url("./image/Road_bg.png") ;
     background-size: cover;
-    position: relative;
+    position: absolute;
     box-sizing: border-box;
     background-position: center center;
 }
