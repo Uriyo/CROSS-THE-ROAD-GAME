@@ -2,11 +2,9 @@ var arena = document.querySelector("#Arena");
 // var canvas = arena.getContext("2d");
 var img = document.querySelector(".character");
 
-var easy=document.querySelector(".easy");
-var medium=document.querySelector(".medium");
-var hard=document.querySelector(".hard");
-
-
+// var easy=document.querySelector(".easy");
+// var medium=document.querySelector(".medium");
+// var hard=document.querySelector(".hard");
 
 var characterPositionup =530;//for up and down
 const charspeed=5;
@@ -61,21 +59,21 @@ function moveRight()
     },charspeed)  
     }
 }
+// Added at the end of the file
+// function easy()
+// {
 
-function easy()
-{
+// }
 
-}
+// function medium()
+// {
 
-function medium()
-{
+// }
 
-}
+// function hard()
+// {
 
-function hard()
-{
-
-}
+// }
   //function for keynotes
   function control(e)
   {
@@ -103,67 +101,72 @@ document.addEventListener('keydown', control);
 var vehicle_size = "60px";
 var direction_left = "left";
 var direction_right = "right";
-var speed = 20;
+var smooth_frame = 20;
 var level1 = 600;
 var level2 = 500;
 var level3 = 280;
 var level4 = 200;
 // var vehicle = "Car";
-function car_move(direction,speed,level,vehicle) {
+function car_move(direction,smooth_frame,level,vehicle,speed) {
     var car = document.createElement("img");
-    // road1 to arena
-    var arena = document.querySelector("#Arena");
-
-    
-    car.setAttribute("src", "./GameAssets/Car.png");
-    car.setAttribute("height", "50x");
-    car.setAttribute("id","car_id");
-    car.style.position = "relative";
-
+    var road1 = document.querySelector("#road1");
     var uid = Math.random();
     car.setAttribute("src", "GameAssets/"+vehicle+".png");
     car.setAttribute("height", vehicle_size);
     car.setAttribute("id","car_id"+direction+level+uid);
     car.style.position = "absolute";
-    // road1 to arena
-    arena.appendChild(car);
+    road1.appendChild(car);
 
     var car_obj = document.getElementById("car_id"+direction+level+uid);
     var pos = 0 ;
     // 4 levels
     car_obj.style.top = level+'px';
     // elem.style.transform = "scale(-1,1)";
-    var status = setInterval(frame,speed);
+    var status = setInterval(frame,smooth_frame);
     if (direction=="right")
     {
         // to flip the image
         car_obj.style.transform = "scale(-1,1)";
-        pos = 1920;
+        // pos = 1920;
+        pos=1400;
         car_obj.style.left = pos;
     }
     function frame() {
+        if((img.style.left==car_obj.style.left) && (characterPositionup==level1 || characterPositionup==level2 || characterPositionup==level3 || characterPositionup ==level4) )
+        {
+         // console.log(car_obj.style.left);
+         // console.log(img.style.left); 
+            alert("Game Over");
+        }
+
         if (direction=="left")
         {
-            if (pos>1920)
+            if (pos>1400)
             {
                 clearInterval(status);
                 car_obj.remove();
             }
+    //         else if((img.style.left==car_obj.style.left) && (characterPositionup==level1 || characterPositionup==level2 || characterPositionup==level3 || characterPositionup ==level4) )
+    //    {
+    //     // console.log(car_obj.style.left);
+    //     // console.log(img.style.left); 
+    //        alert("Game Over");
+    //    }
             else
             {
-                pos+=3;
+                pos+=speed;
                 car_obj.style.left = pos+'px';
             }
         }
         // direction is right
         else {
-            if (pos<-100)
+            if (pos<0)
             {
                 clearInterval(status);
                 car_obj.remove();
             }
             else {
-                pos-=3;
+                pos-=speed;
                 car_obj.style.left= pos+'px';
             }
         
@@ -184,22 +187,37 @@ function random_motion() {
     setTimeout( function(){
         // gives values 0 1 2 3 4 5 
         console.log(Math.floor((Math.random()*10)/1.8));
-        car_move(direction_right,speed,level1,vehicle_arr[Math.floor((Math.random()*10)/1.8)]);
+        car_move(direction_right,smooth_frame,level1,vehicle_arr[Math.floor((Math.random()*10)/1.8)],3);
     }, Math.random()*1000);
 
     // level4
     setTimeout( function(){
-        car_move(direction_left,speed,level4,vehicle_arr[Math.floor((Math.random()*10)/1.8)])
+        car_move(direction_left,smooth_frame,level4,vehicle_arr[Math.floor((Math.random()*10)/1.8)],3)
     },Math.random()*1000);
     
     // level3
     setTimeout( function(){
-        car_move(direction_right,speed,level3,vehicle_arr[Math.floor((Math.random()*10)/1.8)])
+        car_move(direction_right,smooth_frame,level3,vehicle_arr[Math.floor((Math.random()*10)/1.8)],3)
     }, Math.random()*1000);
     
     // level2
     setTimeout(function(){
-        car_move(direction_left,speed,level2,vehicle_arr[Math.floor((Math.random()*10)/1.8)])
+        car_move(direction_left,smooth_frame,level2,vehicle_arr[Math.floor((Math.random()*10)/1.8)],3)
     }, Math.random()*1000)
 }
-setInterval(random_motion,1000);
+
+
+// Default is easy onload
+var ongoing = setInterval(random_motion,2800);
+function Easy() {
+    clearInterval(ongoing);
+    var ongoing = setInterval(random_motion,2800);
+}
+function Medium() {
+    clearInterval(ongoing);
+    setInterval(random_motion,2600);
+}
+function Hard() {
+    clearInterval(ongoing);
+    setInterval(random_motion,2400);
+}
