@@ -37,23 +37,25 @@ body
     background-position: center center;
     overflow: hidden;
     margin-left: 300px;
+    box-shadow: 10px 10px 5px greenyellow;
 }
-/* .Navigation
+.Navigation
 {
     height : 100px;
     width : 125px;
-    position: relative;
+    position: fixed;
     border : 5px solid red;
-    top : 50px;
-    left:-100px;
-} */
+    top : 50%;
+    color:white;
+    text-align: center;
+}
  .character
  {
      height: 50px;
      width: 50px;
      position: absolute;
-     top:530px;
-     right: 50%;
+     top:715px;
+     right: 340px;
      background-image: url("GameAssets/character.png");
      background-repeat: no-repeat;
      background-size: cover;

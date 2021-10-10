@@ -6,8 +6,10 @@ var img = document.querySelector(".character");
 // var medium=document.querySelector(".medium");
 // var hard=document.querySelector(".hard");
 
-var characterPositionup =530;//for up and down
+var characterPositionup =715;//setted randomly
 const charspeed=5;
+var count =0;
+
 function moveForward()
 {
     if(characterPositionup>charspeed)
@@ -17,6 +19,10 @@ function moveForward()
         characterPositionup-=charspeed;
         img.style.top= characterPositionup + "px";
     },charspeed)
+    }
+    else if(characterPositionup==5)
+    {
+        alert ("CONGRATULATIONS ! YOU MADE IT ...");
     }
 }
 function moveDown()
@@ -32,7 +38,7 @@ function moveDown()
     } 
 }
 
-var characterPositionleft = 900; //for left and right
+var characterPositionleft = 340; //for left and right
 
 function moveLeft()
 {
@@ -136,7 +142,16 @@ function car_move(direction,smooth_frame,level,vehicle,speed) {
         {
          // console.log(car_obj.style.left);
          // console.log(img.style.left); 
-            alert("Game Over");
+            count++;
+            if(count == 3)
+            {
+                alert("BETTER LUCK NEXT TIME !");
+            }
+            else
+            {
+                alert("One life lost")
+                location.reload();
+            }
         }
 
         if (direction=="left")
