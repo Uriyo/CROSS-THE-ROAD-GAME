@@ -202,4 +202,4 @@ function random_motion() {
         car_move(direction_left,speed,level2,vehicle_arr[Math.floor((Math.random()*10)/1.8)])
     }, Math.random()*1000)
 }
-setInterval(random_motion,2000);
+setInterval(random_motion,1000);

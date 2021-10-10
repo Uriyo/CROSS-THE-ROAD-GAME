@@ -33,7 +33,18 @@ body
     position: relative;
     box-sizing: border-box;
     background-position: center center;
+    overflow: hidden;
+    margin-left: 300px;
 }
+/* .Navigation
+{
+    height : 100px;
+    width : 125px;
+    position: relative;
+    border : 5px solid red;
+    top : 50px;
+    left:-100px;
+} */
  .character
  {
      height: 50px;
