@@ -11,7 +11,7 @@ body
     font-family: 'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', sans-serif;/*Probably changing it lagter adn add some gaming*/
     border:5px solid green;
     text-shadow: 2px 2px hotpink;
-    letter-spacing:8px;/*adding to make animation more smooth*/
+    letter-spacing:8px;
     animation-name: text;
     animation-duration: 4s;
     animation-iteration-count: infinite;

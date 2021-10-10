@@ -2,6 +2,12 @@ var arena = document.querySelector("#Arena");
 // var canvas = arena.getContext("2d");
 var img = document.querySelector(".character");
 
+var easy=document.querySelector(".easy");
+var medium=document.querySelector(".medium");
+var hard=document.querySelector(".hard");
+
+
+
 var characterPositionup =530;//for up and down
 const charspeed=5;
 function moveForward()
@@ -56,7 +62,20 @@ function moveRight()
     }
 }
 
+function easy()
+{
 
+}
+
+function medium()
+{
+
+}
+
+function hard()
+{
+
+}
   //function for keynotes
   function control(e)
   {
@@ -94,6 +113,13 @@ function car_move(direction,speed,level,vehicle) {
     var car = document.createElement("img");
     // road1 to arena
     var arena = document.querySelector("#Arena");
+
+    
+    car.setAttribute("src", "./GameAssets/Car.png");
+    car.setAttribute("height", "50x");
+    car.setAttribute("id","car_id");
+    car.style.position = "relative";
+
     var uid = Math.random();
     car.setAttribute("src", "GameAssets/"+vehicle+".png");
     car.setAttribute("height", vehicle_size);
