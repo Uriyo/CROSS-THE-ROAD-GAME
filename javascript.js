@@ -206,18 +206,35 @@ function random_motion() {
     }, Math.random()*1000)
 }
 
+// for the vehicles to be generated initially
+function initial_timer() {
+    console.log("hi");
+    // timer div created
+    var timer_div = document.createElement("div");
+    timer_div.setAttribute("id","timer_div");
+    document.body.appendChild(timer_div);
 
+    var timer_msg = document.createElement("h1");
+    timer_msg.setAttribute("id","timer_msg");
+    timer_div.appendChild(timer_msg);
+    document.getElementById("timer_msg").innerHTML = "Starting Game";
+    setTimeout(function(){timer_div.remove();},5000);
+}
+initial_timer();
 // Default is easy onload
-var ongoing = setInterval(random_motion,2800);
+var ongoing = setInterval(random_motion,3000);
 function Easy() {
     clearInterval(ongoing);
-    var ongoing = setInterval(random_motion,2800);
+    initial_timer();
+    var ongoing = setInterval(random_motion,3000);
 }
 function Medium() {
     clearInterval(ongoing);
-    setInterval(random_motion,2600);
+    initial_timer();
+    setInterval(random_motion,2700);
 }
 function Hard() {
     clearInterval(ongoing);
+    initial_timer();
     setInterval(random_motion,2400);
 }
