@@ -92,13 +92,15 @@ var level4 = 200;
 // var vehicle = "Car";
 function car_move(direction,speed,level,vehicle) {
     var car = document.createElement("img");
-    var road1 = document.querySelector("#road1");
+    // road1 to arena
+    var arena = document.querySelector("#Arena");
     var uid = Math.random();
     car.setAttribute("src", "GameAssets/"+vehicle+".png");
     car.setAttribute("height", vehicle_size);
     car.setAttribute("id","car_id"+direction+level+uid);
     car.style.position = "absolute";
-    road1.appendChild(car);
+    // road1 to arena
+    arena.appendChild(car);
 
     var car_obj = document.getElementById("car_id"+direction+level+uid);
     var pos = 0 ;
