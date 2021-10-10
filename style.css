@@ -26,11 +26,19 @@ body
 }
 #Arena
 {
+<<<<<<< HEAD
     height:800px;
     width:100%;
     background-image:url("./GameAssets/Road_bg.png") ;
     background-size: cover;
     position: absolute;
+=======
+    height: 800px;
+    width:70%;
+    background-image:url("GameAssets/Road_bg.png") ;
+    background-size: cover;
+    position: relative;
+>>>>>>> b9f70899cdfa47734d6525a5d4f582a7f7510da7
     box-sizing: border-box;
     background-position: center center;
 }
@@ -41,7 +49,7 @@ body
      position: absolute;
      top:530px;
      right: 50%;
-     background-image: url("./GameAssets/character.png");
+     background-image: url("GameAssets/character.png");
      background-repeat: no-repeat;
      background-size: cover;
      bottom: 0px;
@@ -63,4 +71,7 @@ body
          /* margin-bottom: -40px; */
      }
      
+ }
+ #road1 {
+     position:absolute;
  }

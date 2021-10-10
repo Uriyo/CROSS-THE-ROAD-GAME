@@ -98,32 +98,108 @@ function hard()
 }
 document.addEventListener('keydown', control);
 
+
 // CAR MOTION
-function car_move() {
+var vehicle_size = "60px";
+var direction_left = "left";
+var direction_right = "right";
+var speed = 20;
+var level1 = 600;
+var level2 = 500;
+var level3 = 280;
+var level4 = 200;
+// var vehicle = "Car";
+function car_move(direction,speed,level,vehicle) {
     var car = document.createElement("img");
     var road1 = document.querySelector("#road1");
+<<<<<<< HEAD
     
     car.setAttribute("src", "./GameAssets/Car.png");
     car.setAttribute("height", "50x");
     car.setAttribute("id","car_id");
     car.style.position = "relative";
 
+=======
+    var uid = Math.random();
+    car.setAttribute("src", "GameAssets/"+vehicle+".png");
+    car.setAttribute("height", vehicle_size);
+    car.setAttribute("id","car_id"+direction+level+uid);
+    car.style.position = "absolute";
+>>>>>>> b9f70899cdfa47734d6525a5d4f582a7f7510da7
     road1.appendChild(car);
 
-    var car_obj = document.getElementById("car_id");
+    var car_obj = document.getElementById("car_id"+direction+level+uid);
     var pos = 0 ;
+    // 4 levels
+    car_obj.style.top = level+'px';
     // elem.style.transform = "scale(-1,1)";
-    var status = setInterval(frame,2);
+    var status = setInterval(frame,speed);
+    if (direction=="right")
+    {
+        // to flip the image
+        car_obj.style.transform = "scale(-1,1)";
+        pos = 1920;
+        car_obj.style.left = pos;
+    }
     function frame() {
-        if (pos>1920)
+        if (direction=="left")
         {
-            clearInterval(status);
+            if (pos>1920)
+            {
+                clearInterval(status);
+                car_obj.remove();
+            }
+            else
+            {
+                pos+=3;
+                car_obj.style.left = pos+'px';
+            }
         }
+        // direction is right
         else {
-            pos++;
-            car_obj.style.left = pos+'px';
+            if (pos<-100)
+            {
+                clearInterval(status);
+                car_obj.remove();
+            }
+            else {
+                pos-=3;
+                car_obj.style.left= pos+'px';
+            }
+        
         }
         }
     
 }
-car_move();
+// level 2 and 4 for left
+// level 1 and 3 for right 
+var delay = 1000;
+// 6 vehicles
+const vehicle_arr = ["Car","Bus","Truck","Jeep","Ambulance","SUV"];
+// 2 direction array
+const direction_arr = [direction_left,direction_right];
+
+function random_motion() {
+    // level1
+    setTimeout( function(){
+        // gives values 0 1 2 3 4 5 
+        console.log(Math.floor((Math.random()*10)/1.8));
+        car_move(direction_right,speed,level1,vehicle_arr[Math.floor((Math.random()*10)/1.8)]);
+    }, Math.random()*1000);
+
+    // level4
+    setTimeout( function(){
+        car_move(direction_left,speed,level4,vehicle_arr[Math.floor((Math.random()*10)/1.8)])
+    },Math.random()*1000);
+    
+    // level3
+    setTimeout( function(){
+        car_move(direction_right,speed,level3,vehicle_arr[Math.floor((Math.random()*10)/1.8)])
+    }, Math.random()*1000);
+    
+    // level2
+    setTimeout(function(){
+        car_move(direction_left,speed,level2,vehicle_arr[Math.floor((Math.random()*10)/1.8)])
+    }, Math.random()*1000)
+}
+setInterval(random_motion,2000);
