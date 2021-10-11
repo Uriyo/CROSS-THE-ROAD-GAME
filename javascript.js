@@ -222,7 +222,7 @@ function random_motion() {
 }
 
 // for the vehicles to be generated initially
-function initial_timer() {
+function initial_timer(difficulty) {
     console.log("hi");
     // timer div created
     var timer_div = document.createElement("div");
@@ -232,24 +232,40 @@ function initial_timer() {
     var timer_msg = document.createElement("h1");
     timer_msg.setAttribute("id","timer_msg");
     timer_div.appendChild(timer_msg);
-    document.getElementById("timer_msg").innerHTML = "Starting Game";
+    // document.getElementById("timer_msg").innerHTML = "Starting Game";
+    switch (difficulty)
+    {
+        case "default":
+        document.getElementById("timer_msg").innerHTML = "Starting Game";
+        break;
+        case "easy":
+        document.getElementById("timer_msg").innerHTML = "Easy";
+        break;
+        case "medium":
+        document.getElementById("timer_msg").innerHTML = "Medium";
+        break;
+        case "hard":
+        document.getElementById("timer_msg").innerHTML = "Hard";
+        break;
+
+    }
     setTimeout(function(){timer_div.remove();},5000);
 }
-initial_timer();
+initial_timer("default");
 // Default is easy onload
 var ongoing = setInterval(random_motion,3000);
 function Easy() {
     clearInterval(ongoing);
-    initial_timer();
+    initial_timer("easy");
     var ongoing = setInterval(random_motion,3000);
 }
 function Medium() {
     clearInterval(ongoing);
-    initial_timer();
+    initial_timer("medium");
     setInterval(random_motion,2700);
 }
 function Hard() {
     clearInterval(ongoing);
-    initial_timer();
+    initial_timer("hard");
     setInterval(random_motion,2400);
 }
