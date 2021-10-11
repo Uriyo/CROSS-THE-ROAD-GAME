@@ -91,7 +91,8 @@ function moveRight()
         moveRight();
     }
 }
-document.addEventListener('keydown', control);
+// shifted in initial timer for freezing keydown control while game is starting
+// document.addEventListener('keydown', control);
 // function gameOver(){
 
 // CAR MOTION
@@ -262,18 +263,69 @@ function initial_timer(difficulty) {
 initial_timer("default");
 // Default is easy onload
 var ongoing = setInterval(random_motion,2000);
+// To freeze keydown for 5 sec during loading
+setTimeout(function() {
+    document.addEventListener('keydown', control);
+},5000);
 function Easy() {
     clearInterval(ongoing);
     initial_timer("easy");
+    document.removeEventListener('keydown',control);
+    setTimeout(function() {
+        document.addEventListener('keydown', control);
+    },5000);
     var ongoing = setInterval(random_motion,2000);
 }
 function Medium() {
     clearInterval(ongoing);
     initial_timer("medium");
+    document.removeEventListener('keydown',control);
+    setTimeout(function() {
+        document.addEventListener('keydown', control);
+    },5000);
     setInterval(random_motion,1400);
 }
 function Hard() {
     clearInterval(ongoing);
     initial_timer("hard");
+    document.removeEventListener('keydown',control);
+    setTimeout(function() {
+        document.addEventListener('keydown', control);
+    },5000);
     setInterval(random_motion,1000);
+}
+
+// Game themes
+var count_bg = 1;
+function ChangeBg() {
+    var currentBg = document.getElementById("Arena");
+    if (count_bg%2!=0)
+    {
+        currentBg.style.backgroundImage = "url(GameAssets/Road_bg_desert.png)";
+        count_bg+=1;
+    }
+    else 
+    {
+        currentBg.style.backgroundImage = "url(GameAssets/Road_bg.png)";
+        count_bg+=1;
+    }
+}
+var count_char=1;
+function ChangeChar() {
+    var currentBg = document.querySelector(".character");
+    if (count_char%2!=0&&count_char%3!=0)
+    {
+        currentBg.style.backgroundImage = "url(GameAssets/character3.png)";
+        count_char+=1;
+    }
+    else if (count_char%2==0)
+    {
+        currentBg.style.backgroundImage = "url(GameAssets/character.png)";
+        count_char+=1;
+    }
+    else
+    {
+        currentBg.style.backgroundImage = "url(GameAssets/character2.png)";
+        count_char+=1;
+    }
 }
