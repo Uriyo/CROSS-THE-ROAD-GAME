@@ -1,28 +1,27 @@
 var arena = document.querySelector("#Arena");
 // var canvas = arena.getContext("2d");
 var img = document.querySelector(".character");
-
+var life=document.querySelector(".Lifes");
 // var easy=document.querySelector(".easy");
 // var medium=document.querySelector(".medium");
 // var hard=document.querySelector(".hard");
 
-var characterPositionup =715;//setted randomly
+var characterPositionup =700;//setted randomly
 const charspeed=5;
 var count =0;
 
 function moveForward()
 {
-    if(characterPositionup>charspeed)
+    if(characterPositionup>5)
     {
-    let timerId =setTimeout(function()
-    {      
+          
         characterPositionup-=charspeed;
         img.style.top= characterPositionup + "px";
-    },charspeed)
     }
     else if(characterPositionup==5)
     {
         alert ("CONGRATULATIONS ! YOU MADE IT ...");
+        location.reload();
     }
 }
 function moveDown()
@@ -30,25 +29,20 @@ function moveDown()
     
     if(characterPositionup<(arena.offsetHeight-40))
     {
-     let timerId=setTimeout(function()
-        {
+
             characterPositionup+=charspeed;
             img.style.top= characterPositionup + "px";
-        },charspeed) 
     } 
 }
 
-var characterPositionleft = 340; //for left and right
+var characterPositionleft = 600; //for left and right
 
 function moveLeft()
 {
     
     if(characterPositionleft>charspeed){
-    let timerId=setTimeout(function()
-        {
             characterPositionleft-=charspeed;
             img.style.left= characterPositionleft + "px";
-        },charspeed)
     }    
 }
 
@@ -58,11 +52,8 @@ function moveRight()
     if(characterPositionleft<(arena.offsetWidth-40))//you have added or subtracted 40 everyawhere as your charcter is going out of your box
     {
    
-    let timerId=setTimeout(function()
-    {
         characterPositionleft+=charspeed;
-      img.style.left= characterPositionleft + "px";
-    },charspeed)  
+      img.style.left= characterPositionleft + "px";  
     }
 }
 // Added at the end of the file
@@ -101,7 +92,7 @@ function moveRight()
     }
 }
 document.addEventListener('keydown', control);
-
+// function gameOver(){
 
 // CAR MOTION
 var vehicle_size = "60px";
@@ -138,22 +129,39 @@ function car_move(direction,smooth_frame,level,vehicle,speed) {
         car_obj.style.left = pos;
     }
     function frame() {
-        if((img.style.left==car_obj.style.left) && (characterPositionup==level1 || characterPositionup==level2 || characterPositionup==level3 || characterPositionup ==level4) )
-        {
-         // console.log(car_obj.style.left);
-         // console.log(img.style.left); 
-            count++;
-            if(count == 3)
-            {
-                alert("BETTER LUCK NEXT TIME !");
-            }
-            else
-            {
-                alert("One life lost")
-                location.reload();
+        function gameOver(){
+            // if((img.style.left==car_obj.style.left) && 
+            // (characterPositionup>(level1)  && characterPositionup<(level1+60)
+            // || characterPositionup==level2 || characterPositionup==level3 || characterPositionup ==level4) )
+            // {
+                if((img.style.left>=car_obj.style.left && (img.style.left)<(car_obj.style.left+70)) && 
+                (
+                (characterPositionup>(level1-20)&& characterPositionup<(level1+40))||
+                (characterPositionup>(level2-20)&& characterPositionup<(level2+40))||
+                 (characterPositionup>(level3-20)&& characterPositionup<(level3+40))|| 
+                 (characterPositionup>(level4-20)&& characterPositionup<(level4+40)) )
+                )
+                {
+            // console.log(car_obj.style.left);
+            // console.log(img.style.left); 
+            count= count +1;
+                if(count == 3)
+                {
+                    alert("BETTER LUCK NEXT TIME !");
+                    location.reload();
+                }
+                else
+                {
+                    life.innerHTML=`LIFES : ${3-count}`;
+                    alert(`${count} life lost`);
+                    img.style.top="700px";
+                img.style.left = "600px";
+                characterPositionup =700;
+                characterPositionleft = 600;
+                }
             }
         }
-
+        gameOver();
         if (direction=="left")
         {
             if (pos>1400)

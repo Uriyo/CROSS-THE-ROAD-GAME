@@ -1,6 +1,6 @@
 body
 {
-    background-color: rgb(59, 59, 59);
+    background-color: black;
     overflow: hidden;
     box-sizing: border-box;
 }
@@ -37,31 +37,46 @@ body
     background-position: center center;
     overflow: hidden;
     margin-left: 300px;
-    box-shadow: 10px 10px 5px greenyellow;
+    box-shadow: 10px 10px 5px rgb(0, 0, 0);
 }
 .Navigation
 {
-    height : 100px;
+    height : 150px;
     width : 125px;
     position: fixed;
-    border : 5px solid red;
+    border : 5px double green;
     top : 50%;
     color:white;
     text-align: center;
+    font-size: x-large;
+    left: 20px;
 }
  .character
  {
      height: 50px;
      width: 50px;
      position: absolute;
-     top:715px;
-     right: 340px;
+     top:700px;
+     left: 600px;
      background-image: url("GameAssets/character2.png");
      background-repeat: no-repeat;
      background-size: cover;
      bottom: 0px;
  }
 
+ .Lifes
+ {
+    padding-top:10px;
+    position: fixed;
+     top:50%;
+     left: 88%;
+     border:5px double green;
+     text-align: center;
+     font-size: x-large;
+    height: 50px;
+    width: 200px;
+    color: ivory;
+ }
  @keyframes text {
      /* 0%
      {
