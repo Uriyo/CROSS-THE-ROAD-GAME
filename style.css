@@ -42,8 +42,8 @@ body
 }
 .Navigation
 {
-    height : 187px;
-    width : 125px;
+    height : 150px;
+    width : 200px;
     position: fixed;
     border : 5px double green;
     top : 50%;

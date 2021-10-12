@@ -211,22 +211,22 @@ function random_motion() {
     setTimeout( function(){
         // gives values 0 1 2 3 4 5 
         console.log(Math.floor((Math.random()*10)/1.8));
-        car_move(direction_right,smooth_frame,level1,vehicle_arr[Math.floor((Math.random()*10)/1.8)],7);
+        car_move(direction_right,smooth_frame,level1,vehicle_arr[Math.floor((Math.random()*10)/1.8)],3);
     }, Math.random()*80);
 
     // level4
     setTimeout( function(){
-        car_move(direction_left,smooth_frame,level4,vehicle_arr[Math.floor((Math.random()*10)/1.8)],7)
+        car_move(direction_left,smooth_frame,level4,vehicle_arr[Math.floor((Math.random()*10)/1.8)],3)
     },Math.random()*80);
     
     // level3
     setTimeout( function(){
-        car_move(direction_right,smooth_frame,level3,vehicle_arr[Math.floor((Math.random()*10)/1.8)],7)
+        car_move(direction_right,smooth_frame,level3,vehicle_arr[Math.floor((Math.random()*10)/1.8)],3)
     }, Math.random()*80);
     
     // level2
     setTimeout(function(){
-        car_move(direction_left,smooth_frame,level2,vehicle_arr[Math.floor((Math.random()*10)/1.8)],7)
+        car_move(direction_left,smooth_frame,level2,vehicle_arr[Math.floor((Math.random()*10)/1.8)],3)
     }, Math.random()*80)
 }
 
@@ -258,7 +258,7 @@ function initial_timer(difficulty) {
         break;
 
     }
-    setTimeout(function(){timer_div.remove();},5000);
+    setTimeout(function(){timer_div.remove();},6000);
 }
 initial_timer("default");
 // Default is easy onload
