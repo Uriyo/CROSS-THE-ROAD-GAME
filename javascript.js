@@ -266,33 +266,52 @@ var ongoing = setInterval(random_motion,2000);
 // To freeze keydown for 5 sec during loading
 setTimeout(function() {
     document.addEventListener('keydown', control);
-},5000);
+},6000);
+
+// to allow keys to be pressed only once
+var easy_counter=0;
+var medium_counter=0;
+var hard_counter=0;
+
 function Easy() {
-    clearInterval(ongoing);
-    initial_timer("easy");
-    document.removeEventListener('keydown',control);
-    setTimeout(function() {
-        document.addEventListener('keydown', control);
-    },5000);
-    var ongoing = setInterval(random_motion,2000);
+    if (easy_counter==0)
+    {
+        clearInterval(ongoing);
+        initial_timer("easy");
+        document.removeEventListener('keydown',control);
+        setTimeout(function() {
+            document.addEventListener('keydown', control);
+        },6000);
+        var ongoing = setInterval(random_motion,2000);
+        easy_counter+=1
+    }
+    
 }
 function Medium() {
-    clearInterval(ongoing);
-    initial_timer("medium");
-    document.removeEventListener('keydown',control);
-    setTimeout(function() {
-        document.addEventListener('keydown', control);
-    },5000);
-    setInterval(random_motion,1400);
+    if (medium_counter==0)
+    {
+        clearInterval(ongoing);
+        initial_timer("medium");
+        document.removeEventListener('keydown',control);
+        setTimeout(function() {
+            document.addEventListener('keydown', control);
+        },6000);
+        setInterval(random_motion,1400);
+        medium_counter+=1;
+    }
 }
 function Hard() {
-    clearInterval(ongoing);
-    initial_timer("hard");
-    document.removeEventListener('keydown',control);
-    setTimeout(function() {
-        document.addEventListener('keydown', control);
-    },5000);
-    setInterval(random_motion,1000);
+    if (hard_counter==0)
+    {
+        clearInterval(ongoing);
+        initial_timer("hard");
+        document.removeEventListener('keydown',control);
+        setTimeout(function() {
+            document.addEventListener('keydown', control);
+        },6000);
+        setInterval(random_motion,1000);
+        hard_counter+=1;
+    }
 }
 
 // Game themes
