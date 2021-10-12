@@ -6,6 +6,10 @@ var life=document.querySelector(".Lifes");
 // var medium=document.querySelector(".medium");
 // var hard=document.querySelector(".hard");
 
+// Sound effects
+var sound_collision = new Audio("GameAssets/Collision.mp3");
+var sound_char = new Audio("GameAssets/char_move.mp3");
+
 var characterPositionup =700;//setted randomly
 const charspeed=5;
 var count =0;
@@ -17,6 +21,7 @@ function moveForward()
           
         characterPositionup-=charspeed;
         img.style.top= characterPositionup + "px";
+        sound_char.play();
     }
     else if(characterPositionup==5)
     {
@@ -32,6 +37,8 @@ function moveDown()
 
             characterPositionup+=charspeed;
             img.style.top= characterPositionup + "px";
+            sound_char.play();
+
     } 
 }
 
@@ -43,6 +50,8 @@ function moveLeft()
     if(characterPositionleft>charspeed){
             characterPositionleft-=charspeed;
             img.style.left= characterPositionleft + "px";
+            sound_char.play();
+
     }    
 }
 
@@ -54,6 +63,8 @@ function moveRight()
    
         characterPositionleft+=charspeed;
       img.style.left= characterPositionleft + "px";  
+      sound_char.play();
+
     }
 }
 // Added at the end of the file
@@ -143,6 +154,7 @@ function car_move(direction,smooth_frame,level,vehicle,speed) {
                  (characterPositionup>(level4-20)&& characterPositionup<(level4+40)) )
                 )
                 {
+                    sound_collision.play();
             // console.log(car_obj.style.left);
             // console.log(img.style.left); 
             count= count +1;
