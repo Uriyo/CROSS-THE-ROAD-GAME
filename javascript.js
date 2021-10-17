@@ -224,22 +224,22 @@ function random_motion() {
         // gives values 0 1 2 3 4 5 
         console.log(Math.floor((Math.random()*10)/1.8));
         car_move(direction_right,smooth_frame,level1,vehicle_arr[Math.floor((Math.random()*10)/1.8)],3);
-    }, Math.random()*80);
+    }, ((Math.random()*1000)+500));
 
     // level4
     setTimeout( function(){
         car_move(direction_left,smooth_frame,level4,vehicle_arr[Math.floor((Math.random()*10)/1.8)],3)
-    },Math.random()*80);
+    },((Math.random()*1000)+500));
     
     // level3
     setTimeout( function(){
         car_move(direction_right,smooth_frame,level3,vehicle_arr[Math.floor((Math.random()*10)/1.8)],3)
-    }, Math.random()*80);
+    }, ((Math.random()*1000)+500));
     
     // level2
     setTimeout(function(){
         car_move(direction_left,smooth_frame,level2,vehicle_arr[Math.floor((Math.random()*10)/1.8)],3)
-    }, Math.random()*80)
+    }, ((Math.random()*1000)+500))
 }
 
 // for the vehicles to be generated initially
@@ -274,7 +274,7 @@ function initial_timer(difficulty) {
 }
 initial_timer("default");
 // Default is easy onload
-var ongoing = setInterval(random_motion,2000);
+var ongoing = setInterval(random_motion,3200);
 // To freeze keydown for 5 sec during loading
 setTimeout(function() {
     document.addEventListener('keydown', control);
@@ -294,7 +294,7 @@ function Easy() {
         setTimeout(function() {
             document.addEventListener('keydown', control);
         },6000);
-        var ongoing = setInterval(random_motion,2000);
+        var ongoing = setInterval(random_motion,3200);
         easy_counter+=1
     }
     
@@ -308,7 +308,7 @@ function Medium() {
         setTimeout(function() {
             document.addEventListener('keydown', control);
         },6000);
-        setInterval(random_motion,1400);
+        setInterval(random_motion,2800);
         medium_counter+=1;
     }
 }
@@ -321,7 +321,7 @@ function Hard() {
         setTimeout(function() {
             document.addEventListener('keydown', control);
         },6000);
-        setInterval(random_motion,1000);
+        setInterval(random_motion,2800);
         hard_counter+=1;
     }
 }
