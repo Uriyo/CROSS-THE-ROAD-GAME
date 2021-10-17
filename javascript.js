@@ -1,4 +1,6 @@
 var arena = document.querySelector("#Arena");
+var border = 0;
+
 // var canvas = arena.getContext("2d");
 var img = document.querySelector(".character");
 var life=document.querySelector(".Lifes");
@@ -83,6 +85,18 @@ function moveRight()
 
 // }
   //function for keynotes
+  function ChangeBorder()
+{
+    
+    if (border==1)
+    {
+        border =0;
+    }
+    else
+    {
+        border =1;
+    }
+}
   function control(e)
   {
     if(e.keyCode==38)//for up arrow
@@ -108,6 +122,7 @@ function moveRight()
 
 // CAR MOTION
 var vehicle_size = "60px";
+var vehicle_width = "90px";
 var direction_left = "left";
 var direction_right = "right";
 var smooth_frame = 20;
@@ -123,8 +138,20 @@ function car_move(direction,smooth_frame,level,vehicle,speed) {
     car.setAttribute("src", "GameAssets/"+vehicle+".png");
     car.setAttribute("height", vehicle_size);
     car.setAttribute("id","car_id"+direction+level+uid);
+   
+   if (border == 1)
+   {
+    car.setAttribute("border","2px solid black");
+    img.style.border = "2px solid red";
+}
+if(border ==0)
+{
+    car.setAttribute("border","0px solid black");
+    img.style.border = "0px solid red";
+}
+    car.setAttribute("width",vehicle_width);
     car.style.position = "absolute";
-    road1.appendChild(car);
+    arena.appendChild(car);
 
     var car_obj = document.getElementById("car_id"+direction+level+uid);
     var pos = 0 ;
@@ -137,44 +164,58 @@ function car_move(direction,smooth_frame,level,vehicle,speed) {
         // to flip the image
         car_obj.style.transform = "scale(-1,1)";
         // pos = 1920;
-        pos=1400;
+        pos=arena.offsetWidth;
         car_obj.style.left = pos;
     }
-    function frame() {
-        function gameOver(){
-            // if((img.style.left==car_obj.style.left) && 
-            // (characterPositionup>(level1)  && characterPositionup<(level1+60)
-            // || characterPositionup==level2 || characterPositionup==level3 || characterPositionup ==level4) )
-            // {
-                if((img.style.left>=car_obj.style.left && (img.style.left)<(car_obj.style.left+70)) && 
-                (
-                (characterPositionup>(level1-20)&& characterPositionup<(level1+40))||
-                (characterPositionup>(level2-20)&& characterPositionup<(level2+40))||
-                 (characterPositionup>(level3-20)&& characterPositionup<(level3+40))|| 
-                 (characterPositionup>(level4-20)&& characterPositionup<(level4+40)) )
-                )
-                {
-                    sound_collision.play();
-            // console.log(car_obj.style.left);
-            // console.log(img.style.left); 
-            count= count +1;
-                if(count == 3)
-                {
-                    alert("BETTER LUCK NEXT TIME !");
-                    location.reload();
-                }
-                else
-                {
-                    life.innerHTML=`LIFES : ${3-count}`;
-                    alert(`${count} life lost`);
-                    img.style.top="700px";
-                img.style.left = "600px";
-                characterPositionup =700;
-                characterPositionleft = 600;
-                }
+    function gameOver(){
+        // if((img.style.left==car_obj.style.left) && 
+        // (characterPositionup==(level1)  || characterPositionup==level2 || characterPositionup==level3 || characterPositionup ==level4) )
+        // { 
+        var img_left= parseInt(img.style.left);
+        var car_left=parseInt(car_obj.style.left);
+        var img_top=800 - parseInt(img.style.top);
+        var car_top=800 - parseInt(car_obj.style.top);
+        // if((img_left>=car_left && img_left<(car_left+60)) && 
+        // (
+        // (characterPositionup>=(level1)&& characterPositionup<(level1+60))||
+        // (characterPositionup>=(level2)&& characterPositionup<(level2+60))||
+        //  (characterPositionup>=(level3)&& characterPositionup<(level3+60))|| 
+        //  (characterPositionup>=(level4)&& characterPositionup<(level4+60)) )
+        // )
+        // {
+            if(
+                img_left < car_left + 90 &&  //90 == carwidth
+                img_left + 50 > car_left &&   // 50 == imgwidth
+                 img_top <car_top + 60 &&  //60==carheight
+                50 + img_top > car_top 
+            )
+            {
+                console.log(img_left);
+                console.log(car_left);
+                sound_collision.play();
+        // console.log(car_obj.style.left);
+        // console.log(img.style.left); 
+        count= count +1;
+            if(count == 3)
+            {
+                alert("BETTER LUCK NEXT TIME !");
+                location.reload();
+            }
+            else
+            {
+                life.innerHTML=`LIFES : ${3-count}`;
+                alert(`${count} life lost`);
+                img.style.top="700px";
+            img.style.left = "600px";
+            characterPositionup =700;
+            characterPositionleft = 600;
             }
         }
-        gameOver();
+    }
+    
+    function frame() {
+       
+       
         if (direction=="left")
         {
             if (pos>1400)
@@ -190,6 +231,7 @@ function car_move(direction,smooth_frame,level,vehicle,speed) {
     //    }
             else
             {
+                gameOver();
                 pos+=speed;
                 car_obj.style.left = pos+'px';
             }
@@ -202,14 +244,16 @@ function car_move(direction,smooth_frame,level,vehicle,speed) {
                 car_obj.remove();
             }
             else {
+                gameOver();
                 pos-=speed;
                 car_obj.style.left= pos+'px';
             }
         
         }
-        }
-    
 }
+}
+    
+
 // level 2 and 4 for left
 // level 1 and 3 for right 
 var delay = 1000;
@@ -230,8 +274,6 @@ function random_motion() {
     setTimeout( function(){
         car_move(direction_left,smooth_frame,level4,vehicle_arr[Math.floor((Math.random()*10)/1.8)],3)
     },((Math.random()*1000)+500));
-    
-    // level3
     setTimeout( function(){
         car_move(direction_right,smooth_frame,level3,vehicle_arr[Math.floor((Math.random()*10)/1.8)],3)
     }, ((Math.random()*1000)+500));
@@ -321,7 +363,7 @@ function Hard() {
         setTimeout(function() {
             document.addEventListener('keydown', control);
         },6000);
-        setInterval(random_motion,2800);
+        setInterval(random_motion,2000);
         hard_counter+=1;
     }
 }
@@ -358,5 +400,17 @@ function ChangeChar() {
     {
         currentBg.style.backgroundImage = "url(GameAssets/character2.png)";
         count_char+=1;
+    }
+}
+function ChangeBorder()
+{
+    
+    if (border==0)
+    {
+        border =1;
+    }
+    else if(border==1)
+    {
+        border =0;
     }
 }
