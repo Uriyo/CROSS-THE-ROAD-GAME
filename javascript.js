@@ -142,13 +142,13 @@ function car_move(direction,smooth_frame,level,vehicle,speed) {
    if (border == 1)
    {
     car.setAttribute("border","2px solid black");
-    img.style.border = "2px solid red";
-}
-if(border ==0)
-{
-    car.setAttribute("border","0px solid black");
-    img.style.border = "0px solid red";
-}
+    img.style.border = "2px solid red"; 
+    }
+    if(border ==0)
+    {
+        car.setAttribute("border","0px solid black");
+        img.style.border = "0px solid red";
+    }
     car.setAttribute("width",vehicle_width);
     car.style.position = "absolute";
     arena.appendChild(car);
